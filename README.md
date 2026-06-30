@@ -75,9 +75,27 @@ Predicts how many days early/late an order will arrive based on order, product, 
 4. Freight value
 5. Seller state
 
+<p align="center">
+  <img src="assets/shap_delivery_summary.png" alt="SHAP summary plot for delivery delay model" width="700">
+  <br>
+  <em>SHAP summary plot — feature impact on predicted delivery delay</em>
+</p>
+
 ### Customer Segmentation (KMeans)
 
 Segmented ~96K customers into 4 behavioral clusters using RFM features, scaled with `StandardScaler` and validated via the elbow method.
+
+<p align="center">
+  <img src="assets/elbow_plot.png" alt="Elbow method plot for choosing K" width="500">
+  <br>
+  <em>Elbow method — inertia vs number of clusters, used to select K=4</em>
+</p>
+
+<p align="center">
+  <img src="assets/kmeans_clusters.png" alt="KMeans customer segments scatter plot" width="600">
+  <br>
+  <em>Customer segments by Recency and Log Monetary value</em>
+</p>
 
 | Segment | Description |
 |---|---|
@@ -92,8 +110,9 @@ Segmented ~96K customers into 4 behavioral clusters using RFM features, scaled w
 
 Every prediction from the delivery model is explainable at two levels:
 
-- **Global** — which features matter most across all predictions (summary plot)
-- **Local** — why a specific order was predicted to be early/late (force plot)
+- **Global** — which features matter most across all predictions (summary plot above)
+- **Local** — why a specific order was predicted to be early/late (force plot below)
+
 
 This moves the project beyond a black-box model into something a business stakeholder can trust and act on.
 
@@ -116,6 +135,11 @@ ecommerce-intelligence/
 ├── app.py                       # Streamlit application
 ├── requirements.txt             # Python dependencies
 ├── runtime.txt                  # Python version for deployment
+├── assets/                      # Saved plots for README
+│   ├── shap_delivery_summary.png
+│   ├── shap_force_plot.png
+│   ├── elbow_plot.png
+│   └── kmeans_clusters.png
 ├── data/
 │   └── rfm_segments.csv         # Customer RFM + segment labels
 ├── models/
